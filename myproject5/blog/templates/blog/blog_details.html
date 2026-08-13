@@ -6,6 +6,9 @@
     <title>{% block title %}My Project{% endblock %}</title>
 </head>
 <body>
+        {% comment %} Blog filter page {% endcomment %}
+        <h1>Blog Details</h1>
+            <p><b>Author Available</b> {{ post.author | yesno:"Yes,No,Maybe" }} </p>
         <h1>{{ post.title }}</h1>
         
         {%comment %} Text filter {% endcomment %}
@@ -13,5 +16,30 @@
         <p><b> Title (Uppercase): </b>{{post.title|upper}}</p>
         <p><b> Title (Lowercase): </b>{{post.title|lower}}</p>
         <p><b> Title (Capitalize): </b>{{post.title|capfirst}}</p>
+        
+        <hr>
+        {%comment %} addition {% endcomment %}
+        <p><b>>Original Price:</b> {{post.price}}</p>
+        <p><b>>Original Price(+10):</b> {{post.price | add:10}}</p>
+
+
+        {%comment %} division by {% endcomment %}
+
+        {% if post.number|divisibleby:2 %}
+            <p><b>Number:</b> {{post.number}} is even</p>
+        {% else %}
+            <p><b>Number:</b> {{post.number}} is odd</p>
+        {% endif %}
+
+        {%comment %} List filter {% endcomment %}
+        <p><b>firsttag:</b> {{post.tags | first}}</p>
+        <p><b>lasttag:</b> {{post.tags | last}}</p>
+        <p><b>length:</b> {{post.tags | length}}</p>
+
+        {%comment %} encoding and formatting {% endcomment %}
+        <p><b>urlencode:</b> {{post.title | urlencode}}</p>
+        <p><b>Float format:</b> {{post.price | floatformat:2}}</p>
+
+        
 </body>
 </html>

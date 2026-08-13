@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Project{% endblock %}</title>
+</head>
+<body>
+        <h1>{{ post.title }}</h1>
+        
+        {%comment %} Text filter {% endcomment %}
+        <p><b> Title (Normal): </b>{{post.title}}</p>
+        <p><b> Title (Uppercase): </b>{{post.title|upper}}</p>
+        <p><b> Title (Lowercase): </b>{{post.title|lower}}</p>
+        <p><b> Title (Capitalize): </b>{{post.title|capfirst}}</p>
+</body>
+</html>

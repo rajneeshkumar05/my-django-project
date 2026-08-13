@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#1 Template Basic</title>
+</head>
+<body>
+    <h1>Template Basic</h1>
+    <!-- Django Template Language (DTL) -->
+     
+      {% comment %} this is first comment {% endcomment %}
+      <p>{{ name }}</p>
+      <p>{{ age }}</p>
+      <p>{{blog.title}}</p>
+      <p>{{blog.content}}</p>
+      <p>{{blog.author}}</p>
+      <p>{{blog.date_posted}}</p>
+
+      <p>{{user.name}},{{user.age}} </p>
+      <p>skills: {{skills|join:", "}}</p>
+</html>

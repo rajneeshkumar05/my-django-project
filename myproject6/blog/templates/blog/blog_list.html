@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title># template 3</title>
+</head>
+<body>
+    {%comment%} WITH  {% endcomment %}
+    {% with total=blogs|length %}
+        <h1>Total Blogs: {{ total }}</h1>
+    {% endwith %}
+
+    <hr>
+
+    {%comment%}CYCLE{%endcomment%}
+
+    <h2>Blogs in Table</h2>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+    {% for blog in blogs %}
+        <tr class="{% cycle 'lightblue' 'lightgreen' %}">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ blog.title }}</td>
+            <td>{{ blog.author }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<style>
+    .lightblue {
+        background-color: lightblue;
+    }
+
+    .lightgreen {
+        background-color: lightgreen;
+    }
+</style>
+
+{% comment%} FIRST OF {% endcomment %}
+
+<p>Author: {% firstof blogs.1.author "abhay" %}</p>
+
+
+{% comment%} varbatim {% endcomment %}
+{% verbatim %}
+    <p>Author: {{ blogs.1.author }}</p>
+{% endverbatim %}
+
+{% comment %} AUTOESCAPE {% endcomment %}
+    <h2>Autoescape Example</h2>
+        <h2>{{ html_code }}</h2>
+
+    {%comment%} IF CONDITION {% endcomment %}
+    {% if blogs.0.is_featured %}
+        <h1>Featured Blog: {{ blogs.0.title }}</h1>
+    {% else %}
+        <h1>No Featured Blog</h1>
+    {% endif %}
+
+    {%comment%} FOR LOOP {% endcomment %}
+
+    {% for blog in blogs %}
+        <h2>{{ blog.title }}</h2>
+        <p>Author: {{ blog.author }}</p>
+        {% if blog.is_featured %}
+            <p>This is a featured blog.</p>
+        {% else %}
+            <p>This is not a featured blog.</p>
+        {% endif %}
+    {% endfor %}
+
+
+    <ul>
+        {% for blog in blogs %}
+            {% if blog.author %}
+            <li>{{ forloop.counter }} - {{ blog.title }} - {{blog.author}}</li>
+            {% endif %}
+        {% empty %}
+            <li>No blogs available.</li>
+        {% endfor %}
+    </ul>
+
+
+    
+</body>
+</html>
